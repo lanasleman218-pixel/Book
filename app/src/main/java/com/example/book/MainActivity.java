@@ -7,10 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
+
+    private FirebaseServices fbs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +23,17 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        gotoLoginFragment();
+        //gotoLoginFragment();
     }
     private void gotoLoginFragment() {
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main,new login());
+        ft.replace(R.id.main,new LoginFragment());
+        ft.commit();
+
+    }
+    public void gotoAllBooks() {
+        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main,new AllBooksFragment());
         ft.commit();
 
     }
@@ -34,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        gotoAddBookFragment();
+        //gotoAddBookFragment();
+        fbs = FirebaseServices.getInstance();
+        if (fbs.getAuth().getCurrentUser() == null)
+
+         gotoLoginFragment();
+        else
+          gotoAllBooks();
 
     }
 

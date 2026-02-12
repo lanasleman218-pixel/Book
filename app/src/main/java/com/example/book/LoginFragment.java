@@ -20,10 +20,10 @@ import com.google.firebase.auth.AuthResult;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link login#newInstance} factory method to
+ * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class login extends Fragment {
+public class LoginFragment extends Fragment {
     private EditText etUsername,etPassword;
     private TextView tvSignupLink;
     private TextView tvForgotPasswardLink;
@@ -39,7 +39,7 @@ public class login extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public login() {
+    public LoginFragment() {
         // Required empty public constructor
     }
 
@@ -52,8 +52,8 @@ public class login extends Fragment {
      * @return A new instance of fragment login.
      */
     // TODO: Rename and change types and number of parameters
-    public static login newInstance(String param1, String param2) {
-        login fragment = new login();
+    public static LoginFragment newInstance(String param1, String param2) {
+        LoginFragment fragment = new LoginFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -112,7 +112,7 @@ public class login extends Fragment {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         Toast.makeText(getActivity(), "You Have Successfully logged in!", Toast.LENGTH_SHORT).show();
-
+                        ((MainActivity)getActivity()).gotoAllBooks();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -134,7 +134,7 @@ public class login extends Fragment {
     }
     private void gotoForgotPasswordFragment() {
         FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.main,new ForgetPAssword());
+        ft.replace(R.id.main,new ForgetPassword());
         ft.commit();
 
     }

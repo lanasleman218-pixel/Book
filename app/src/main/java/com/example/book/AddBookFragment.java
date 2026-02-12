@@ -27,7 +27,6 @@ public class AddBookFragment extends Fragment {
     private FirebaseServices fbs;
     private Utils utils;
 
-
     public void onStart(){
         super.onStart();
         connectComponents();
@@ -73,6 +72,8 @@ public class AddBookFragment extends Fragment {
                     Toast.makeText(getActivity(), "Some fileds are empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+
 
                 Book book=new Book( title,  author,publisher,  publishDate, type,ISBN, description, pages,  language,"");
 

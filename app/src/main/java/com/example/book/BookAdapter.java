@@ -15,7 +15,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
     Context context;
     ArrayList<Book> booksList;
 
-    public BookAdapter(Context context,ArrayList<Book>booksList)
+    public BookAdapter(Context context, ArrayList<Book> booksList)
     {
         this.context=context;
         this.booksList=booksList;
@@ -41,9 +41,9 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull BookAdapter.MyViewHolder holder, int position) {
         Book book=booksList.get(position);
-        holder.tvTitle.setText(booksList.get(position).getTitle());
-        holder.tvAuthor.setText(booksList.get(position).getAuthor());
-        holder.tvDescription.setText(booksList.get(position).getDescription());
+        holder.tvTitle.setText(book.getTitle());
+        holder.tvAuthor.setText(book.getAuthor());
+        holder.tvDescription.setText(book.getDescription());
     }
 
     @Override

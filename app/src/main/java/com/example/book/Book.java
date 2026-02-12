@@ -1,5 +1,18 @@
 package com.example.book;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
 public class Book {
     private String title;
     private String author;
@@ -11,6 +24,7 @@ public class Book {
     private Integer pages;
     private String language;
     private String photo;
+
 
     public void setPhoto(String photo) {
         this.photo = photo;
@@ -62,5 +76,6 @@ public class Book {
 
     public String getLanguage() { return language; }
     public void setLanguage(String language) { this.language = language; }
+
 
 }
