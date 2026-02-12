@@ -16,6 +16,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main, new AddBookFragment())
+                    .commit();
+        }
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -44,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
         //gotoAddBookFragment();
         fbs = FirebaseServices.getInstance();
         if (fbs.getAuth().getCurrentUser() == null)
-
-         gotoLoginFragment();
-        else
-          gotoAllBooks();
+            gotoAddBookFragment();
+       //  gotoLoginFragment();
+       // else
+        //  gotoAllBooks();
 
     }
 

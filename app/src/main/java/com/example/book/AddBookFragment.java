@@ -1,9 +1,12 @@
 package com.example.book;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -26,6 +29,10 @@ public class AddBookFragment extends Fragment {
     private Button btnAdd;
     private FirebaseServices fbs;
     private Utils utils;
+    ImageView img;
+    private static final int GALLERY_REQUEST_CODE = 123;
+
+
 
     public void onStart(){
         super.onStart();
@@ -72,12 +79,13 @@ public class AddBookFragment extends Fragment {
                     Toast.makeText(getActivity(), "Some fileds are empty!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
-
-
-                Book book=new Book( title,  author,publisher,  publishDate, type,ISBN, description, pages,  language,"");
-
-
+                Book book;
+                if (fbs.getSelectedImageURL()==null) {
+                   book = new Book(title, author, publisher, publishDate, type, ISBN, description, pages, language, "");
+                }
+                else {
+                     book = new Book(title, author, publisher, publishDate, type, ISBN, description, pages, language, fbs.getSelectedImageURL().toString());
+                }
                 fbs.getFire().collection("books").add(book).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -94,8 +102,22 @@ public class AddBookFragment extends Fragment {
         });
 
     }
+    private final ActivityResultLauncher<Intent> pickImageLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    Uri imageUri = result.getData().getData();
+                    img.setImageURI(imageUri);
+                }
+            });
 
 
+
+
+    private void openGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickImageLauncher.launch(intent);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,8 +127,14 @@ public class AddBookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_book, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_book, container, false);
+
+        img = view.findViewById(R.id.imageViewAddbook);
+        img.setOnClickListener(v -> openGallery());
+
+        return view;
     }
+
 
 
 }

@@ -180,5 +180,19 @@
             app:layout_constraintTop_toBottomOf="@+id/etDescriptionAddBook"
             app:layout_constraintVertical_bias="0.0" />
 
+        <ImageView
+            android:id="@+id/imageViewAddbook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="102dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnAddAddBook"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etLanguageAddBook" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
