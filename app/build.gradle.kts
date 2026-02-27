@@ -1,3 +1,4 @@
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.gms.google.services)
@@ -42,7 +43,10 @@ dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.firebase.auth)
     implementation(libs.recyclerview)
+    implementation("com.github.bumptech.glide:glide:5.0.5")
+    implementation("com.squareup.picasso:picasso:2.71828")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }

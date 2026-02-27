@@ -51,10 +51,10 @@ public class MainActivity extends AppCompatActivity {
         //gotoAddBookFragment();
         fbs = FirebaseServices.getInstance();
         if (fbs.getAuth().getCurrentUser() == null)
-            gotoAddBookFragment();
-       //  gotoLoginFragment();
-       // else
-        //  gotoAllBooks();
+           //gotoAddBookFragment();
+           gotoLoginFragment();
+        else
+           gotoAllBooks();
 
     }
 

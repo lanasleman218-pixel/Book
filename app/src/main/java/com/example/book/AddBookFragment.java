@@ -31,7 +31,15 @@ public class AddBookFragment extends Fragment {
     private Utils utils;
     ImageView img;
     private static final int GALLERY_REQUEST_CODE = 123;
-
+    private final ActivityResultLauncher<Intent> pickImageLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    Uri imageUri = result.getData().getData();
+                    img.setImageURI(imageUri);
+                    utils.uploadImage(getActivity(), imageUri);
+                }
+            });
 
 
     public void onStart(){
@@ -102,17 +110,6 @@ public class AddBookFragment extends Fragment {
         });
 
     }
-    private final ActivityResultLauncher<Intent> pickImageLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Uri imageUri = result.getData().getData();
-                    img.setImageURI(imageUri);
-                }
-            });
-
-
-
 
     private void openGallery() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
