@@ -24,6 +24,7 @@ public class Book {
     private Integer pages;
     private String language;
     private String photo;
+    private Integer Image;
 
 
     public void setPhoto(String photo) {
@@ -36,6 +37,14 @@ public class Book {
 
     public Book() {
         // Required empty constructor for Firestore
+    }
+    public Book(String title,Integer Image)
+    {
+        this.title=title;
+        this.Image=Image;
+    }
+    public Integer getImage() {
+        return Image;
     }
     public Book(String title, String author, String publisher, String publishDate, String type,
                 String ISBN, String description, Integer pages, String language,String photo) {

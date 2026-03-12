@@ -66,6 +66,7 @@ public class AllBooksFragment extends Fragment {
                             books.add(document.toObject(Book.class));
                         }
                         BookAdapter adapter = new BookAdapter(getActivity(), books);
+                        //BookAdapter adapter = new BookCardAdapter(getActivity(), books);
                         recyclerViewAllBook.setAdapter(adapter);
 
                     } else {

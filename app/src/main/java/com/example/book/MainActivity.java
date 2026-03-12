@@ -44,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
         ft.commit();
 
     }
+    public void gotoBookCard() {
+        FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main,new BookCardFragment());
+        ft.commit();
+
+    }
 
     @Override
     protected void onStart() {
@@ -52,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
         fbs = FirebaseServices.getInstance();
         if (fbs.getAuth().getCurrentUser() == null)
            //gotoAddBookFragment();
-           gotoLoginFragment();
-        else
-           gotoAllBooks();
+          // gotoLoginFragment();
+       // else
+        //   gotoAllBooks();
+            gotoBookCard();
 
     }
 
