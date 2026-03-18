@@ -1,13 +1,16 @@
 package com.example.book;
 
+
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import com.example.book.BookCardFragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentTransaction;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft=getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.main,new BookCardFragment());
         ft.commit();
+
 
     }
 

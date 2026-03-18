@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookCardFragment extends Fragment {
+public BookCardFragment(){
 
+}
     private RecyclerView recyclerView;
     private BookCardAdapterFragment adapter;
 

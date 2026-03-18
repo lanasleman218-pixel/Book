@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 class BookCardAdapterFragment extends RecyclerView.Adapter<BookCardAdapterFragment.BookViewHolder>{
+
     private List<Book> bookList;
     public BookCardAdapterFragment(List<Book> bookList) {
         this.bookList = bookList;
